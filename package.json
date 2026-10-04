@@ -15,7 +15,13 @@
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit && tsc --project src/tsconfig.json --noEmit",
     "test": "node --test \"tests/*.test.ts\"",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm test"
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm test",
+    "build": "node scripts/build.ts",
+    "web-ext": "web-ext --no-config-discovery --artifacts-dir artifacts",
+    "validate": "npm run web-ext -- lint --source-dir dist --warnings-as-errors",
+    "package": "npm run build && npm run validate && npm run web-ext -- build --source-dir dist --filename repohop.zip --overwrite-dest && npm run validate:package",
+    "validate:package": "npm run web-ext -- lint --source-dir artifacts/repohop.zip --warnings-as-errors",
+    "start": "npm run build && npm run web-ext -- run --source-dir dist"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
