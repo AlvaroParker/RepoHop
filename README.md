@@ -18,9 +18,12 @@ the normal page request only when you choose the menu item.
 
 ## Development
 
-Use Node.js **24.21.0 LTS** from `.node-version` and its bundled npm **11.19.0**.
-CI reads that same version file. Select this version with your Node version
-manager, then run:
+Node.js **24.21.0 LTS** from `.node-version` and its bundled npm **11.19.0**
+are the recommended toolchain. CI reads that same version file. RepoHop leaves
+the [`engines` range advisory](https://docs.npmjs.com/cli/v12/configuring-npm/package-json#engines),
+so other versions may produce an npm warning without blocking installation.
+Select the pinned version with your Node version manager to match CI exactly,
+then run:
 
 ```sh
 npm ci
